@@ -4,7 +4,6 @@ using Application.Users.Commands.CreateUser;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +31,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
