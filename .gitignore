@@ -1,0 +1,20 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+.vscode/
+*.user
+*.rsuser
+*.suo
+
+# Logs
+*.log
+
+# Environment
+.env
+.vs/
+
+# EF Core migrations snapshots
+*Migrations/*Designer.cs
