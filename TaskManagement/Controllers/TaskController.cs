@@ -5,6 +5,7 @@ using Application.Tasks.Queries.GetAll;
 using Application.Tasks.Queries.GetById;
 using Domain.Common;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -58,6 +59,7 @@ namespace TaskManagement.Controllers
         }
 
         // POST api/<TasksController>
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public async Task<IActionResult> Create(CreareTaskCommand command, CancellationToken cancellationToken)
         {
@@ -66,6 +68,7 @@ namespace TaskManagement.Controllers
         }
 
         // PUT api/<TasksController>/5
+        [Authorize(Roles = "Manager,Employee")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(UpdateTaskCommand command, CancellationToken cancellationToken)
         {
@@ -74,6 +77,7 @@ namespace TaskManagement.Controllers
         }
 
         // DELETE api/<TasksController>/5
+        [Authorize(Roles = "Manager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTask(Guid id)
         {

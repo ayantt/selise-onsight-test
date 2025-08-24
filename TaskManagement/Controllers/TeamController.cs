@@ -4,6 +4,7 @@ using Application.Teams.Commands.UpdateTeam;
 using Application.Teams.Queries.GetAll;
 using Application.Teams.Queries.GetById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -42,6 +43,7 @@ namespace TaskManagement.Controllers
         }
 
         // POST api/<TeamsController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CreareTeamCommand command, CancellationToken cancellationToken)
         {
@@ -50,6 +52,8 @@ namespace TaskManagement.Controllers
         }
 
         // PUT api/<TeamsController>/5
+
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(UpdateTeamCommand command, CancellationToken cancellationToken)
         {
@@ -58,6 +62,7 @@ namespace TaskManagement.Controllers
         }
 
         // DELETE api/<TeamsController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeam(Guid id)
         {

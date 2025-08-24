@@ -4,6 +4,7 @@ using Application.Users.Commands.UpdateUser;
 using Application.Users.Queries.GetAll;
 using Application.Users.Queries.GetById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -42,6 +43,7 @@ namespace TaskManagement.Controllers
         }
 
         // POST api/<UsersController>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CreareUserCommand command, CancellationToken cancellationToken)
         {
@@ -50,6 +52,7 @@ namespace TaskManagement.Controllers
         }
 
         // PUT api/<UsersController>/5
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(UpdateUserCommand command, CancellationToken cancellationToken)
         {
@@ -58,6 +61,7 @@ namespace TaskManagement.Controllers
         }
 
         // DELETE api/<UsersController>/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
